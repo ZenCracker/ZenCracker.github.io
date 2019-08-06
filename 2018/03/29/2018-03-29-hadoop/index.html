@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大数据,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZenCracker's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Hadoop    开源的数据分析平台，解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。适合处理非结构化数据，包括HDFS，MapReduce基本组件。      分布式系统基础架构，主要由HDFS和MapReduce两部分组成。HDFS（分布式文件存储系统）用于将一个量级巨大的数据存储 在多台 设备上，并有一定的机制保证其完整和容灾，MapRed">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据相关概念">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/2018-03-29-hadoop/index.html">
+<meta property="og:site_name" content="ZenCracker&#39;s Blog">
+<meta property="og:description" content="Hadoop    开源的数据分析平台，解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。适合处理非结构化数据，包括HDFS，MapReduce基本组件。      分布式系统基础架构，主要由HDFS和MapReduce两部分组成。HDFS（分布式文件存储系统）用于将一个量级巨大的数据存储 在多台 设备上，并有一定的机制保证其完整和容灾，MapRed">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-28T02:03:08.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据相关概念">
+<meta name="twitter:description" content="Hadoop    开源的数据分析平台，解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。适合处理非结构化数据，包括HDFS，MapReduce基本组件。      分布式系统基础架构，主要由HDFS和MapReduce两部分组成。HDFS（分布式文件存储系统）用于将一个量级巨大的数据存储 在多台 设备上，并有一定的机制保证其完整和容灾，MapRed">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/29/2018-03-29-hadoop/">
+
+
+
+
+
+  <title>大数据相关概念 | ZenCracker's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+<!--
+
+-->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZenCracker's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/2018-03-29-hadoop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZenCracker">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZenCracker's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">大数据相关概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T00:00:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-28T10:03:08+08:00">
+                2019-06-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/29/2018-03-29-hadoop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/29/2018-03-29-hadoop/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Hadoop  </p>
+<blockquote>
+<p>开源的数据分析平台，解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。适合处理非结构化数据，包括HDFS，MapReduce基本组件。  </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>分布式系统基础架构，主要由HDFS和MapReduce两部分组成。HDFS（分布式文件存储系统）用于将一个量级巨大的数据存储 在多台 设备上，并有一定的机制保证其完整和容灾，MapReduce则是通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上 百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集。</p>
+</blockquote>
+</blockquote>
+<p>Saprk</p>
+<blockquote>
+<p>UCBerkeley AMPlab所开源的类HadoopMapReduce的通用的并行计算框架。新一代的大数据处理引擎，提供分布式内存抽象，以支持工作集的应用。  </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>Spark能够运行在现有Hadoop集群之上，但需要依赖于YARN对于资源的调度能力。除了Hadoop YARN之外，Spark还能够以Mesos为基础实现同样的资源调度或者利用自身内置调度程度作为独立集群运行。值得注意的是，如果不将Spark与Hadoop配合使用，那么运行在集群之上时某些网络/分布式文件系统（包括NFS、AFS等）仍然必要，这样每个节点才能够切实访问底层数据。  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>运行spark-shell查看spark版本。  </p>
+</blockquote>
+</blockquote>
+<p>Spark与Hadoop的对比(Spark的优势)</p>
+<blockquote>
+<p>1、Spark的中间数据放到内存中，对于迭代运算效率更高<br>2、Spark比Hadoop更通用<br>3、Spark提供了统一的编程接口<br>4、容错性– 在分布式数据集计算时通过checkpoint来实现容错<br>5、可用性– Spark通过提供丰富的Scala, Java，Python API及交互式Shell来提高可用性<br>6、 为Hadoop将每次处理后的数据都写入到磁盘上。Spark的数据对象存储在分布于数据集群中的叫做弹性分布式数据集(RDD:<br>Resilient Distributed Dataset)中。这些数据对象既可以放在内存，也可以放在磁盘。  </p>
+</blockquote>
+<p>Hadoop与Spark的区别 </p>
+<blockquote>
+<p>1、解决问题的层面不一样<br>首先，Hadoop和Apache Spark两者都是大数据框架，但是各自存在的目的不尽相同。Hadoop实质上更多是一个分布式数据基础设施: 它将巨大的数据集分派到一个由普通计算机组成的集群中的多个节点进行存储，意味着您不需要购买和维护昂贵的服务器硬件。同时，Hadoop还会索引和跟踪这些数据，让大数据处理和分析效率达到前所未有的高度。Spark，则是那么一个专门用来对那些分布式存储的大数据进行处理的工具，它并不会进行分布式数据的存储。  </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>2、两者可合可分<br>Hadoop除了提供为大家所共识的HDFS分布式数据存储功能之外，还提供了叫做MapReduce的数据处理功能。所以这里我们完全可以抛开Spark，使用Hadoop自身的MapReduce来完成数据的处理。相反，Spark也不是非要依附在Hadoop身上才能生存。但如上所述，毕竟它没有提供文件管理系统，所以，它必须和其他的分布式文件系统进行集 成才能运作。这里我们可以选择Hadoop的HDFS,也可以选择其他的基于云的数据系统平台 。  </p>
+</blockquote>
+</blockquote>
+<p>HDFS</p>
+<blockquote>
+<p>提供了一种跨服务器的弹性数据存储系统。  </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>在本质上，NameNode是HDFS的Master(主服务器)，DataNode是Slave(从服务器)。  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>NameNode和DataNode:存储到文件系统中的每个文件都有相关联的元数据。元数据包括了文件名、i节点(inode)数、数据块位置等，而数据则是文件的实际内容。其中，元数据存储在NameNode上，而数据存储在DataNode的集群上。  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>当一切运行正常时，DataNode会周期性发送心跳信息给NameNode(默认是每3秒钟一次)。如果NameNode在预定的时间内没有收到心跳信息(默认是10分钟)，它会认为DataNode出问题了，把它从集群中移除，并且启动一个进程去恢复数据。对于HDFS来说，丢失一个DataNode意味着丢失了存储在它的硬盘上的数据块的副本。假如在任意时间总有超过一个副本存在(默认3个)，故障将不会导致数据丢失。当一个硬盘故障时，HDFS会检测到存储在该硬盘的数据块的副本数量低于要求，然后主动创建需要的副本，以达到满副本数状态。    </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>HDFS数据存储单元（block）<br>一、文件被切分成固定大小的文件块<br>1、默认数据大小为64MB，可配置<br>2、若文件大小不到64MB，则单独存储为一个block<br>二、一个文件存储方式<br>1、按大小被切分为若干个block、存储在不同的节点上<br>2、默认情况下每个block都有三个副本  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>HDFS不会对用户数据做任何处理，只会存储原文件。不会进行任何压缩处理，唯一做的是多副本存储  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>副本存储策略：<br>庞大的HDFS实例一般运行在多个机 架的计算机形成的集群上，不同机架间的两台机器的通讯需要通过交换机，显然通常情况下，同一个机架内的两个节点间的带宽会比不同机架间的两台机器的带宽大。如果数据中心只有一个机架，那么该副本放置策略就退化为一个随机选择策略，数据块的均匀分布和可靠性就很难被保证。<br>通过一个称为Rack Awareness的过程，Namenode决定了每个Datanode所属的rack id。一个简单但没有优化的策略就是将副本存放在单独的机架上。这样可以防止整个机架（非副本存放）失效的情况，并且允许读数据的时候可以从多个机架读 取。这个简单策略设置可以将副本分布在集群中，有利于组件失败情况下的负载均衡。但是，这个简单策略加大了写的代价，因为一个写操作需要传输block到 多个机架。<br>在大多数情况下，replication因子是3，HDFS的存放策略是将一个副本存放在本地机架上的节点，一个副本放在同一机架上的另一个节点，最后一 个副本放在不同机架上的一个节点。机架的错误远远比节点的错误少，这个策略不会影响到数据的可靠性和有效性。三分之一的副本在一个节点上，三分之二在一个 机架上，其他保存在剩下的机架中，这一策略改进了写的性能。  </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>副本恢复：<br>Namenode启动后会进入一个称为SafeMode的特殊状态，处在这个状态的Namenode是不会进行数据块的复制的。Namenode从所有的 Datanode接收心跳包和Blockreport。Blockreport包括了某个Datanode所有的数据块列表。每个block都有指定的最 小数目的副本。当Namenode检测确认某个Datanode的数据块副本的最小数目，那么该Datanode就会被认为是安全的；如果一定百分比（这 个参数可配置）的数据块检测确认是安全的，那么Namenode将退出SafeMode状态，接下来它会确定还有哪些数据块的副本没有达到指定数目，并将 这些block复制到其他Datanode。  </p>
+</blockquote>
+</blockquote>
+<p>MapReduce</p>
+<blockquote>
+<p>技术提供了感知数据位置的标准化处理流程：读取数据，对数据进行映射（Map），使用某个键值对数据进行重排，然后对数据进行化简（Reduce）得到最终的输出。  </p>
+</blockquote>
+<p>Pig</p>
+<blockquote>
+<p>分析大数据集的一个平台，该平台由一种表达数据分析程序的高级语言和对这些程序进行评估的基础设施一起组成。  </p>
+</blockquote>
+<p>Hive</p>
+<blockquote>
+<p>hive是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的sql查询功能，可以将sql语句转换为MapReduce任务进行运行。  </p>
+<blockquote>
+<p>Hive跟hbase在功能上也有小部分重叠的地方，它们的主要区别是：Hbase本质是一个数据库，提供在存储层的低延时数据读写能力，可用在实时场景，但没有提供类SQL语言的查询方式，所以数据查询和计算不太方便（PIG学习成本较高）。<br>hive本质是将SQL语句映射成MapReduce作业，延时较高但使用方便，适合离线场景，自身不做存储。此外，hive可以搭建在Hbase之上，访问Hbase的数据。<br>Hive和传统的关系型数据库有很大的区别，Hive将外部的任务解析成一个MapReduce可执行计划，而启动MapReduce是一个高延迟的一件事，每次提交任务和执行任务都需要消耗很多时间，这也就决定Hive只能处理一些高延迟的应用（如果你想处理低延迟的应用，你可以去考虑一下Hbase）。<br>HiveQL和SQL是非常相似的，最主要的区别就是Hive缺少更新和删除功能。<br>Hive就是一款分析历史数据的利器。但是Hive只有在结构化数据的情况下才能大显神威。Hive的软肋是实时分析，如果想要进行实时分析，可以采用HBase。  </p>
+</blockquote>
+</blockquote>
+<p>Hbase</p>
+<blockquote>
+<p>一种分布的、可伸缩的、大数据储存库，支持随机、实时读/写访问。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>HBase 数据库是一个基于分布式的、面向列的、主要用于非结构化数据存储用途的开源数据库。其设计思路来源于 Google 的非开源数据库”BigTable”。<br>HBase作为面向列的数据库运行在HDFS之上，HDFS缺乏随机读写操作，HBase正是为此而出现。如果你需要实时访问一些数据，就把它存入HBase。<br>HDFS 为 HBase 提供底层存储支持，MapReduce 为其提供计算能力，ZooKeeper 为其提供协调服务和 failover（失效转移的备份操作）机制。Pig 和 Hive 为 HBase 提供了高层语言支持，使其可以进行数据统计（可实现多表 join 等），Sqoop 则为其提供 RDBMS 数据导入功能。<br>可以用Hive作为静态数据仓库，HBase作为数据存储，放那些进行一些会改变的数据。<br>Hbase 的模块： 原子性(是指不会被线程调度机制打断的操作，这种操作一旦开始，就一直运行到结束，中间不会有任何contextswitch(切换到领一个线程))，一致性，隔离性，持久性。  </p>
+</blockquote>
+</blockquote>
+<p>Sqoop</p>
+<blockquote>
+<p>为高效传输批量数据而设计的一种工具，其用于Apache Hadoop和结构化数据储存库如关系数据库之间的数据传输。Sqoop则为HBase提供了方便的RDBMS数据导入功能，使得传统数据库数据向HBase中迁移变的非常方便。</p>
+</blockquote>
+<p>Flume</p>
+<blockquote>
+<p>一种分布式的、可靠的、可用的服务，其用于高效地搜集、汇总、移动大量日志数据。</p>
+</blockquote>
+<p>ZooKeeper</p>
+<blockquote>
+<p>一种集中服务，其用于维护配置信息，命名，提供分布式同步，以及提供分组服务。<br>Zookeeper是提供数据同步服务，Yarn和Hbase需要它的支持。</p>
+</blockquote>
+<p>Cloudera</p>
+<blockquote>
+<p>最成型的Hadoop发行版本，拥有最多的部署案例。提供强大的部署、管理和监控工具。开发并贡献了可实时处理大数据的Impala项目。</p>
+</blockquote>
+<p>Hortonworks</p>
+<blockquote>
+<p>使用了100%开源Apache Hadoop提供商。开发了很多增强特性并提交至核心主干，这使得Hadoop能够在包括Windows Server和Azure在内平台上本地运行。</p>
+</blockquote>
+<p>MapR</p>
+<blockquote>
+<p>获取更好的性能和易用性而支持本地Unix文件系统而不是HDFS。提供诸如快照、镜像或有状态的故障恢复等高可用性特性。领导着Apache Drill项目，是Google的Dremel的开源实现，目的是执行类似SQL的查询以提供实时处理。</p>
+</blockquote>
+<p>Impala</p>
+<blockquote>
+<p>Cloudera公司主导开发的新型查询系统，它提供SQL语义，能够查询存储在Hadoop的HDFS和HBase中的PB级大数据，号称比Hive快5-10倍</p>
+<blockquote>
+<p>Impala是对hive的一个补充，可以实现高效的SQL查询。</p>
+</blockquote>
+</blockquote>
+      
+    </div>
+    
+    
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #7AC5CD;font-size:18px">-------------本文结束<i class="fa fa-heart"></i>感谢阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大数据/" rel="tag"><i class="fa fa-tag"></i> 大数据</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/2018-03-28-sendmail/" rel="next" title="使用外部的SMTP发送邮件">
+                <i class="fa fa-chevron-left"></i> 使用外部的SMTP发送邮件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/03/2018-05-03-index/" rel="prev" title="索引使用策略及优化">
+                索引使用策略及优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZenCracker</p>
+              <p class="site-description motion-element" itemprop="description">阅读博客的人希望得到信息而非噪音</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ZenCracker" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+      
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+    	<h3 class="widget-title">标签</h3>
+    	<div id="myCanvasContainer" class="widget tagcloud">
+        	<canvas width="250" height="250" id="resCanvas" style="width=100%">
+            		<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文章摘要/">文章摘要</a><span class="tag-list-count">2</span></li></ul>
+        	</canvas>
+    	</div>
+      </div>
+      
+    
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZenCracker</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+    	<link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://file.awen.me/gitment.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'ZenCracker',
+            repo: 'comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '740e793eeea7fe1c1912bd66751f51c6249e3a97',
+            
+                client_id: '2bc03022ce4e7422daf0'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

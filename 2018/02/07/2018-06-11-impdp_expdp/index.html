@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZenCracker's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="1.1 EXPDP/IMPDP 参数说明新的导出工具/导入工具也都是命令行工具，调用的方法与传统的导出工具/导入工具相同，新的命令分别是EXPDP和IMPDP。从表面来看，EXPDP/IMPDP 命令与 EXP/IMP 命令最显著的不同就是参数变复杂了！本节将从与 EXP/IMP 命令对比的角度，讲述我在使用新命令（参数）时的一些心得体会。  userid：无变化，用于指定用户名/口令。依然支持">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oracle导出&#x2F;导入工具">
+<meta property="og:url" content="http://yoursite.com/2018/02/07/2018-06-11-impdp_expdp/index.html">
+<meta property="og:site_name" content="ZenCracker&#39;s Blog">
+<meta property="og:description" content="1.1 EXPDP/IMPDP 参数说明新的导出工具/导入工具也都是命令行工具，调用的方法与传统的导出工具/导入工具相同，新的命令分别是EXPDP和IMPDP。从表面来看，EXPDP/IMPDP 命令与 EXP/IMP 命令最显著的不同就是参数变复杂了！本节将从与 EXP/IMP 命令对比的角度，讲述我在使用新命令（参数）时的一些心得体会。  userid：无变化，用于指定用户名/口令。依然支持">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-28T03:18:24.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oracle导出&#x2F;导入工具">
+<meta name="twitter:description" content="1.1 EXPDP/IMPDP 参数说明新的导出工具/导入工具也都是命令行工具，调用的方法与传统的导出工具/导入工具相同，新的命令分别是EXPDP和IMPDP。从表面来看，EXPDP/IMPDP 命令与 EXP/IMP 命令最显著的不同就是参数变复杂了！本节将从与 EXP/IMP 命令对比的角度，讲述我在使用新命令（参数）时的一些心得体会。  userid：无变化，用于指定用户名/口令。依然支持">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/07/2018-06-11-impdp_expdp/">
+
+
+
+
+
+  <title>oracle导出/导入工具 | ZenCracker's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+<!--
+
+-->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZenCracker's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/2018-06-11-impdp_expdp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZenCracker">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZenCracker's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">oracle导出/导入工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T00:00:00+08:00">
+                2018-02-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-28T11:18:24+08:00">
+                2019-06-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/07/2018-06-11-impdp_expdp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/07/2018-06-11-impdp_expdp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-1-EXPDP-IMPDP-参数说明"><a href="#1-1-EXPDP-IMPDP-参数说明" class="headerlink" title="1.1 EXPDP/IMPDP 参数说明"></a><strong>1.1 EXPDP/IMPDP 参数说明</strong></h3><p>新的导出工具/导入工具也都是命令行工具，调用的方法与传统的导出工具/导入工具相同，新的命令分别是EXPDP和IMPDP。从表面来看，EXPDP/IMPDP 命令与 EXP/IMP 命令最显著的不同就是参数变复杂了！本节将从与 EXP/IMP 命令对比的角度，讲述我在使用新命令（参数）时的一些心得体会。</p>
+<ul>
+<li>userid：无变化，用于指定用户名/口令。依然支持 3 种写法，依然必须是第一个参数，依然可以省略参数名不写。  </li>
+<li>directory：新增，供转储文件和日志文件使用的目录对象。新命令产生的转储文件只能被存放在 directory 对象对应的 OS 目录中，不能直接指定转储文件存放的 OS 目录，因此在执行命令之前需要先创建 directory 对象。如要把转储文件存放在 D 盘的 dump 目录，示例：CREATE OR REPLACE DIRECTORY dump AS ‘D:\dump’;。至少要确保在执行命令时 D 盘存在名为 dump 目录，因为 EXPDP/IMPDP 不会自动创建 OS 目录。很多帖子里都说创建 directory 对象之后还得给导出账户赋读写权限，示例：GRANT READ, WRITE ON DIRECTORY dump TO demo;。我从未这样赋权也能导出！也许是那些帖子抄袭了相同的错误，当然，也可能是我遗漏了什么。事实上，directory 参数有个默认值：DATA_PUMP_DIR（Oracle 预定义的 directory 对象），当不显示给 directory 参数赋值时，就会启用该默认值。可通过 all_directories 视图查询与 DATA_PUMP_DIR 实际映射的 OS 目录。示例：SELECT t.directory_path FROM all_directories t WHERE t.directory_name=’DATA_PUMP_DIR’;。  </li>
+<li>dumpfile：新增，目标转储文件名的列表。若不显示指定，默认值为：EXPDAT.DMP。  </li>
+<li>logfile：新增，日志文件名。若不显示指定，默认值为：export.log。  </li>
+<li>nologfile：新增，不写入日志文件。可选值 y/n，默认为 n，表示写入，即自动在转储文件所在的目录创建日志文件。  </li>
+<li>content：新增，指定要卸载的数据。可选值 all/data_only/metadata_only，默认为 all，表示业务数据和元数据都导出。  </li>
+<li><p>exclude：新增，排除特定类型对象。下面给出几个典型的排除表达式写法供大家参考：<br><code>exclude=statistics</code> 排除统计信息。<br><code>exclude=sequence,trigger</code> 排除序列和触发器。<br><code>exclude=table:\&quot;= &#39;T_STAFF&#39;\&quot; 排除 T_STAFF 表。
+exclude=table:\&quot;IN (&#39;T_STAFF&#39;,&#39;T_COURSE&#39;)\&quot;</code> 排除 T_STAFF 表和 T_COURSE 表。<br><code>exclude=table:\&quot;&gt; &#39;T&#39;\&quot;</code> 排除开头字母大于 T 的表。<br><code>exclude=procedure:\&quot;LIKE &#39;SP_%&#39;\&quot;</code> 排除以 SP_开头的存储过程。<br><code>exclude=index,view,table:\&quot;= &#39;T_STAFF&#39;\&quot;</code> 排除索引、视图和 T_STAFF 表。  </p>
+</li>
+<li><p>include：新增，包含特定类型对象。参数值表达式写法请参考 exclude 参数。</p>
+</li>
+<li>full：无变化，导出/入整个数据库。可选值 y/n，默认为 n，表示非全库导出/入。</li>
+<li>schemas：相当于 owner，要导出/入的方案的列表。</li>
+<li>tables：无变化，标识要导出/入表的列表。</li>
+<li>query：无变化，用于导出/入表的子集的谓语子句。</li>
+<li>tablespaces：无变化，标识要导出/入表空间的列表。相对来说比较少用。</li>
+<li>estimate：新增，计算作业估计值。可选值 blocks/statistics，默认为 blocks，表示通过数据块数量估算， statistics 表示通过统计信息中记录的内容估算。</li>
+<li>estimate_only：新增（仅导出），在不执行导出的情况下计算作业估计值。</li>
+<li>parallel：更改当前作业活动的 worker 的数目。</li>
+<li>job_name：新增，要创建的导出/入作业的名称。 </li>
+<li>remap_schema：新增（仅导入），将一个方案中的对象加载到另一个方案。</li>
+<li>remap_tablespace：新增（仅导入），讲表空间对象重新映射到另一个表空间。</li>
+<li>table_exists_action：新增（仅导入），导入对象已存在时执行的操作。可选值 skip/append/truncate/replace。默认为 skip，表示跳过。append 表示在原基础上增加数据，truncate 表示先 truncate 表，再插入数据，replace 表示先 drop 表，再创建表并插入数据。</li>
+<li>reuse_datafiles：新增（仅导入），如果表空间已存在，则将其初始化。可选值 y/n，默认为 n。</li>
+<li>sqlfile：新增（仅导入），将所有 DDL 语句写入指定文件。</li>
+</ul>
+<h3 id="1-2-EXPDP-IMPDP-用法示范"><a href="#1-2-EXPDP-IMPDP-用法示范" class="headerlink" title="1.2 EXPDP/IMPDP 用法示范"></a><strong>1.2 EXPDP/IMPDP 用法示范</strong></h3><h4 id="1、全库导出-导入"><a href="#1、全库导出-导入" class="headerlink" title="1、全库导出/导入"></a>1、全库导出/导入</h4><p><code>expdp demo/test directory=dump dumpfile=dat1.dmp logfile=log1.log full=y</code><br><code>impdp demo/test directory=dump dumpfile=dat1.dmp logfile=log1.log full=y</code></p>
+<h4 id="2、按用户导出-导入"><a href="#2、按用户导出-导入" class="headerlink" title="2、按用户导出/导入"></a>2、按用户导出/导入</h4><p><code>expdp demo/test directory=dump dumpfile=dat2.dmp logfile=log2.log schemas=demo</code><br><code>impdp demo/test directory=dump dumpfile=dat2.dmp logfile=log2.log schemas=demo</code>  </p>
+<h4 id="3、按表空间导出-导入"><a href="#3、按表空间导出-导入" class="headerlink" title="3、按表空间导出/导入"></a>3、按表空间导出/导入</h4><p><code>expdp demo/test directory=dump dumpfile=dat3.dmp logfile=log3.log tablespaces=users</code><br><code>impdp demo/test directory=dump dumpfile=dat3.dmp logfile=log3.log tablespaces=users</code></p>
+<h4 id="4、按表导出-导入"><a href="#4、按表导出-导入" class="headerlink" title="4、按表导出/导入"></a>4、按表导出/导入</h4><p><code>expdp demo/test directory=dump dumpfile=dat4.dmp logfile=log4.log tables=t_staff,t_course</code><br><code>impdp demo/test directory=dump dumpfile=dat4.dmp logfile=log4.log tables=t_staff,t_course</code></p>
+<h4 id="5、按查询条件导出-导入"><a href="#5、按查询条件导出-导入" class="headerlink" title="5、按查询条件导出/导入"></a>5、按查询条件导出/导入</h4><p><code>expdp demo/test directory=dump dumpfile=dat5.dmp tables=t_staff query=\&quot; WHERE birthday&gt;=TO_DATE(&#39;1990-01-01&#39;,&#39;yyyy-mm-dd&#39;)\&quot;</code><br><code>impdp demo/test directory=dump dumpfile=dat5.dmp tables=t_staff query=\&quot; WHERE birthday&gt;=TO_DATE(&#39;1990-01-01&#39;,&#39;yyyy-mm-dd&#39;)\&quot;</code></p>
+<h4 id="6、导出-demo-方案，且不写日志"><a href="#6、导出-demo-方案，且不写日志" class="headerlink" title="6、导出 demo 方案，且不写日志"></a>6、导出 demo 方案，且不写日志</h4><p><code>expdp demo/test directory=dump dumpfile=nolog.dmp schemas=demo nologfile=y</code></p>
+<h4 id="7、导出-demo-方案的业务数据"><a href="#7、导出-demo-方案的业务数据" class="headerlink" title="7、导出 demo 方案的业务数据"></a>7、导出 demo 方案的业务数据</h4><p><code>expdp demo/test directory=dump dumpfile=data.dmp logfile=data.log schemas=demo content=data_only</code>  </p>
+<h4 id="8、在不执行导出的情况下，估算-demo-方案"><a href="#8、在不执行导出的情况下，估算-demo-方案" class="headerlink" title="8、在不执行导出的情况下，估算 demo 方案"></a>8、在不执行导出的情况下，估算 demo 方案</h4><p><code>expdp demo/test directory=dump logfile=estimate.log schemas=demo estimate=statistics estimate_only=y</code></p>
+<h4 id="9、导出-t-staff-表定义"><a href="#9、导出-t-staff-表定义" class="headerlink" title="9、导出 t_staff 表定义"></a>9、导出 t_staff 表定义</h4><p><code>expdp demo/test directory=dump dumpfile=staff.dmp logfile=staff.log tables=t_staff content=metadata_only</code> </p>
+<h4 id="10、并行导出-demo-方案，并指定作业名称为-parallel"><a href="#10、并行导出-demo-方案，并指定作业名称为-parallel" class="headerlink" title="10、并行导出 demo 方案，并指定作业名称为 parallel"></a>10、并行导出 demo 方案，并指定作业名称为 parallel</h4><p><code>expdp demo/test directory=dump dumpfile=parallel.dmp logfile=parallel.log schemas=demo parallel=2 job_name=parallel</code></p>
+<h4 id="11、导入前先清空表空间（不可同时指定-reuse-datafiles-和-schemas-或-tablespaces）"><a href="#11、导入前先清空表空间（不可同时指定-reuse-datafiles-和-schemas-或-tablespaces）" class="headerlink" title="11、导入前先清空表空间（不可同时指定 reuse_datafiles 和 schemas 或 tablespaces）"></a>11、导入前先清空表空间（不可同时指定 reuse_datafiles 和 schemas 或 tablespaces）</h4><p><code>impdp demo/test directory=dump dumpfile=dat2.dmp reuse_datafiles=y</code> </p>
+<h4 id="12、按用户导入，且把所有-DLL-语句写入-dat2-sql-文件"><a href="#12、按用户导入，且把所有-DLL-语句写入-dat2-sql-文件" class="headerlink" title="12、按用户导入，且把所有 DLL 语句写入 dat2.sql 文件"></a>12、按用户导入，且把所有 DLL 语句写入 dat2.sql 文件</h4><p><code>impdp demo/test directory=dump dumpfile=dat2.dmp schemas=demo sqlfile=dat2.sql</code>  </p>
+<h4 id="13、也可以把常用的-EXPDP-IMPDP-命令写到批处理文件中，方便日后快速搞定导出-导入。具体操作可参考-EXP-IMP-使用技巧。"><a href="#13、也可以把常用的-EXPDP-IMPDP-命令写到批处理文件中，方便日后快速搞定导出-导入。具体操作可参考-EXP-IMP-使用技巧。" class="headerlink" title="13、也可以把常用的 EXPDP/IMPDP 命令写到批处理文件中，方便日后快速搞定导出/导入。具体操作可参考 EXP/IMP 使用技巧。"></a>13、也可以把常用的 EXPDP/IMPDP 命令写到批处理文件中，方便日后快速搞定导出/导入。具体操作可参考 EXP/IMP 使用技巧。</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #7AC5CD;font-size:18px">-------------本文结束<i class="fa fa-heart"></i>感谢阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/07/2018-02-07-zenofcrack/" rel="next" title="Zen of Crack">
+                <i class="fa fa-chevron-left"></i> Zen of Crack
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/2018-03-28-sendmail/" rel="prev" title="使用外部的SMTP发送邮件">
+                使用外部的SMTP发送邮件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZenCracker</p>
+              <p class="site-description motion-element" itemprop="description">阅读博客的人希望得到信息而非噪音</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ZenCracker" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-EXPDP-IMPDP-参数说明"><span class="nav-number">1.</span> <span class="nav-text">1.1 EXPDP/IMPDP 参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-EXPDP-IMPDP-用法示范"><span class="nav-number">2.</span> <span class="nav-text">1.2 EXPDP/IMPDP 用法示范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、全库导出-导入"><span class="nav-number">2.1.</span> <span class="nav-text">1、全库导出/导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、按用户导出-导入"><span class="nav-number">2.2.</span> <span class="nav-text">2、按用户导出/导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、按表空间导出-导入"><span class="nav-number">2.3.</span> <span class="nav-text">3、按表空间导出/导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、按表导出-导入"><span class="nav-number">2.4.</span> <span class="nav-text">4、按表导出/导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、按查询条件导出-导入"><span class="nav-number">2.5.</span> <span class="nav-text">5、按查询条件导出/导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、导出-demo-方案，且不写日志"><span class="nav-number">2.6.</span> <span class="nav-text">6、导出 demo 方案，且不写日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、导出-demo-方案的业务数据"><span class="nav-number">2.7.</span> <span class="nav-text">7、导出 demo 方案的业务数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、在不执行导出的情况下，估算-demo-方案"><span class="nav-number">2.8.</span> <span class="nav-text">8、在不执行导出的情况下，估算 demo 方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9、导出-t-staff-表定义"><span class="nav-number">2.9.</span> <span class="nav-text">9、导出 t_staff 表定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10、并行导出-demo-方案，并指定作业名称为-parallel"><span class="nav-number">2.10.</span> <span class="nav-text">10、并行导出 demo 方案，并指定作业名称为 parallel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11、导入前先清空表空间（不可同时指定-reuse-datafiles-和-schemas-或-tablespaces）"><span class="nav-number">2.11.</span> <span class="nav-text">11、导入前先清空表空间（不可同时指定 reuse_datafiles 和 schemas 或 tablespaces）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12、按用户导入，且把所有-DLL-语句写入-dat2-sql-文件"><span class="nav-number">2.12.</span> <span class="nav-text">12、按用户导入，且把所有 DLL 语句写入 dat2.sql 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13、也可以把常用的-EXPDP-IMPDP-命令写到批处理文件中，方便日后快速搞定导出-导入。具体操作可参考-EXP-IMP-使用技巧。"><span class="nav-number">2.13.</span> <span class="nav-text">13、也可以把常用的 EXPDP/IMPDP 命令写到批处理文件中，方便日后快速搞定导出/导入。具体操作可参考 EXP/IMP 使用技巧。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+      
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+    	<h3 class="widget-title">标签</h3>
+    	<div id="myCanvasContainer" class="widget tagcloud">
+        	<canvas width="250" height="250" id="resCanvas" style="width=100%">
+            		<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文章摘要/">文章摘要</a><span class="tag-list-count">2</span></li></ul>
+        	</canvas>
+    	</div>
+      </div>
+      
+    
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZenCracker</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+    	<link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://file.awen.me/gitment.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'ZenCracker',
+            repo: 'comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '740e793eeea7fe1c1912bd66751f51c6249e3a97',
+            
+                client_id: '2bc03022ce4e7422daf0'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
